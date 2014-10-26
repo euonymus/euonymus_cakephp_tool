@@ -158,4 +158,9 @@ class U extends Object {
     $res['date'] .= ' ' . $hour . ':' . $minute . ':' . $second;
     return $res;
   }
+
+  public static function toDate($datetime) {
+    if (empty($datetime)) return false;
+    return date('Y-m-d', strtotime($datetime));
+  }
 }

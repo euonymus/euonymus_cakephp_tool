@@ -108,3 +108,4 @@ CakeLog::config('error', array(
 ));
 CakePlugin::load('DebugKit');
 CakePlugin::load('Phpunit');
+App::uses('U', 'Lib');
