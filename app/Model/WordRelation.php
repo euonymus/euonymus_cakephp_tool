@@ -63,4 +63,20 @@ class WordRelation extends AppModel {
 			),
 		),
 	);
+
+
+	public static function conditionByWord($word) {
+	  return array(__CLASS__.'.name' => $word);
+	}
+	public static function conditionWithStart($start) {
+	  return array(__CLASS__.'.end >=' => $start);
+	}
+	public static function conditionWithEnd($end) {
+	  return array(__CLASS__.'.start <=' => $end);
+	}
+	public static function conditionWithStartEnd($start, $end) {
+	  $condition1 = self::conditionWithStart($start);
+	  $condition2 = self::conditionWithEnd($end);
+	  return array('and' => $condition1, $condition2);
+	}
 }

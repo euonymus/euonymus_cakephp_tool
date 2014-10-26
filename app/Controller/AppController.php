@@ -32,4 +32,12 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
   public $components = array('DebugKit.Toolbar');
+
+  /**************************************************************************************/
+  /* Tools                                                                              */
+  /**************************************************************************************/
+  function _loadComponent($Component) {
+    $this->{$Component} = $this->Components->load($Component);
+    $this->{$Component}->initialize($this);
+  }
 }

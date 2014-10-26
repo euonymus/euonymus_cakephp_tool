@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class WordsController extends AppController {
+  public $layout = 'euonymus';
 
 /**
  * Components
@@ -25,6 +26,24 @@ class WordsController extends AppController {
 		$this->Word->recursive = 0;
 		$this->set('words', $this->Paginator->paginate());
 	}
+
+
+	public function relation($word = false) {
+	  if (!$word) $this->redirect(array('action' => 'index'));
+
+	  $this->loadModel('Word');
+	  $this->_loadComponent('PeriodTool');
+	  $this->PeriodTool->setPeriod();
+
+	  if ($this->pointTime) {
+	    $word = $this->Word->findByWordAtPeriod($word, $this->pointTime);
+	  } else {
+	    $word = $this->Word->findByWordInPeriod($word, $this->startDate, $this->endDate);
+	  }
+	  $this->set(compact('word'));
+	}
+
+
 
 /**
  * view method

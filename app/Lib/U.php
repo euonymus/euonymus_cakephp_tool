@@ -75,20 +75,22 @@ class U extends Object {
   }
 
   public static function daysInMonth($month = false, $year = false) {
-    if (!$year) $year = date('Y', time());
-    if (!$month) $month = date('m', time());
-    $lastDay = date("t", mktime(0, 0, 0, $month, 1, $year));
+    $lastDay = self::lastDayInMonth($month, $year);
     $ret = array();
     for($day = 1; $day <= $lastDay; $day++) {
       $ret[] = sprintf('%4d-%02d-%02d', $year, $month, $day);
     }
     return $ret;
   }
-
   public static function day1($month = false, $year = false) {
     if (!$year) $year = date('Y', time());
     if (!$month) $month = date('m', time());
     return sprintf('%4d-%02d-01', $year, $month);
+  }
+  public static function lastDayInMonth($month = false, $year = false) {
+    if (!$year) $year = date('Y', time());
+    if (!$month) $month = date('m', time());
+    return date("t", mktime(0, 0, 0, $month, 1, $year));
   }
 
   const MOMENT_YEAR     = 'year';
