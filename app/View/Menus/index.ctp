@@ -13,8 +13,7 @@
 			<th><?php echo $this->Paginator->sort('dinner'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('tags'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th><?php echo $this->Paginator->sort('point'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -23,7 +22,7 @@
 	<tr>
 		<td><?php echo h($menu['Menu']['id']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['name']); ?>&nbsp;</td>
-		<td><?php echo h($menu['Menu']['restaurant_id']); ?>&nbsp;</td>
+		<td><?php echo h($menu['Restaurant']['name']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['description']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['remarks']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['combo']); ?>&nbsp;</td>
@@ -31,8 +30,7 @@
 		<td><?php echo h($menu['Menu']['dinner']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['price']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['tags']); ?>&nbsp;</td>
-		<td><?php echo h($menu['Menu']['created']); ?>&nbsp;</td>
-		<td><?php echo h($menu['Menu']['modified']); ?>&nbsp;</td>
+		<td><?php echo h($menu['Menu']['point']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $menu['Menu']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $menu['Menu']['id'])); ?>

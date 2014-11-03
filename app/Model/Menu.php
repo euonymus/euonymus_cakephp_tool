@@ -6,6 +6,7 @@ App::uses('AppModel', 'Model');
  */
 class Menu extends AppModel {
 
+  public $actsAs = array('Taggable');
 /**
  * Display field
  *
@@ -102,4 +103,33 @@ class Menu extends AppModel {
 			),
 		),
 	);
+
+  /****************************************************************************/
+  /* Model bind settings                                                      */
+  /****************************************************************************/
+  public static function conditionByTags($words, $expansion = false, $isAnd = true) {
+    /* if (is_string($words)) $keyword_list = $this->getTagList($words); */
+    if (is_string($words)) $keyword_list = explode(',', $words);
+    elseif (is_array($words)) $keyword_list = $words;
+    else return false;
+
+    $conditions = array();
+    // generate a like sentense for each tags
+    $tmp = array();
+    foreach($keyword_list as $key => $val) {
+      $word = addslashes($val);
+      $pre = $isAnd ? '+' : '';
+      $tmp[] = $pre . '"'.$word.'"';
+    }
+    $expr = implode(' ', $tmp);
+
+    if ($expansion) {
+      $modifier = 'WITH QUERY EXPANSION';
+      $min_score = ' >= ' . self::FULLTEXT_MIN_SCORE;
+    } else {
+      $modifier = 'IN BOOLEAN MODE';
+      $min_score = '';
+    }
+    return "MATCH(Menu.tags) AGAINST('".$expr."' ".$modifier.")".$min_score;
+  }
 }

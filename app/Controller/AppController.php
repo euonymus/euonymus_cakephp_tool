@@ -34,6 +34,25 @@ class AppController extends Controller {
   public $components = array('DebugKit.Toolbar');
 
   /**************************************************************************************/
+  /* Data finder                                                                        */
+  /**************************************************************************************/
+  // general data getter
+  public function _getModelsList($Model, $options = array(), $isPaging = false) {
+    $this->loadModel($Model);
+    if (isset($isPaging) && $isPaging) {
+      if (!isset($options['limit']) || !is_numeric($options['limit'])) $options['limit'] = 20;
+      // paginate
+      $this->paginate = array($Model => $options);
+      $data = $this->paginate($Model);
+    } else {
+      if (!isset($options['limit']) || !is_numeric($options['limit'])) $options['limit'] = 5;
+      // TODO: ini_set('memory_limit', '256M');
+      $data = $this->{$Model}->find('all', $options);
+    }
+    return $data;
+  }
+
+  /**************************************************************************************/
   /* Tools                                                                              */
   /**************************************************************************************/
   function _loadComponent($Component) {

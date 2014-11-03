@@ -26,6 +26,14 @@ class ParamToolComponent extends Component {
   /************************************************************************/
   /* pass                                                                 */
   /************************************************************************/
+  public function query_init($query, $default = false) {
+    return $this->query_exists($query) ? $this->Controller->params->query[$query] : $default;
+  }
+
+  public function query_exists($query) {
+    return array_key_exists($query, $this->Controller->params->query);
+  }
+
   /************************************************************************/
   /* tools                                                                */
   /************************************************************************/

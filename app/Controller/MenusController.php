@@ -21,10 +21,25 @@ class MenusController extends AppController {
  *
  * @return void
  */
+  const FULLTEXT_MIN_SCORE = 50;
+
 	public function index() {
-		$this->Menu->recursive = 0;
-		$this->set('menus', $this->Paginator->paginate());
+	  $this->_loadComponent('MenuTool');
+	  $this->set('menus', $this->MenuTool->getList(array(),true));
 	}
+
+
+
+	public function search() {
+	  $this->_loadComponent('MenuTool');
+	  $this->set('menus', $this->MenuTool->search(true));
+	  $this->render('index');
+	}
+
+
+
+
+
 
 /**
  * view method
@@ -83,7 +98,7 @@ class MenusController extends AppController {
 	  if ($this->request->is(array('post', 'put'))) {
 	    if ($this->Menu->save($this->request->data)) {
 	      $this->Session->setFlash(__('The menu has been saved.'));
-	      /* return $this->redirect(array('action' => 'index')); */
+	      return $this->redirect(array('action' => 'index'));
 	    } else {
 	      $this->Session->setFlash(__('The menu could not be saved. Please, try again.'));
 	    }
