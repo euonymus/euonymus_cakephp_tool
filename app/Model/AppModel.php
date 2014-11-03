@@ -30,4 +30,10 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+  /*************************************************************************/
+  /* Tools                                                                 */
+  /*************************************************************************/
+  public function loadModel($model) {
+    if (!isset($this->{$model})) $this->{$model} = ClassRegistry::init($model);
+  }
 }
