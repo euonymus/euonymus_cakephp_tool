@@ -7,7 +7,7 @@
 #
 # ホスト: 127.0.0.1 (MySQL 5.5.28)
 # データベース: euonymus
-# 作成時刻: 2014-10-31 07:17:21 +0000
+# 作成時刻: 2014-11-03 13:29:53 +0000
 # ************************************************************
 
 
@@ -18,6 +18,59 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# テーブルのダンプ menu_tags
+# ------------------------------------------------------------
+
+CREATE TABLE `menu_tags` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `accessories` varchar(255) DEFAULT NULL,
+  `order` int(11) unsigned NOT NULL DEFAULT '1',
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# テーブルのダンプ menus
+# ------------------------------------------------------------
+
+CREATE TABLE `menus` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `restaurant_id` int(11) unsigned NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `combo` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `lunch` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `dinner` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `price` int(11) unsigned DEFAULT NULL,
+  `tags` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `point` int(11) unsigned NOT NULL DEFAULT '0',
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `tags` (`tags`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+# テーブルのダンプ restaurants
+# ------------------------------------------------------------
+
+CREATE TABLE `restaurants` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(255) DEFAULT NULL,
+  `order` int(11) unsigned NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 # テーブルのダンプ word_relations
