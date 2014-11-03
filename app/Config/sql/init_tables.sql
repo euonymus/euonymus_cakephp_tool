@@ -7,7 +7,7 @@
 #
 # ホスト: 127.0.0.1 (MySQL 5.5.28)
 # データベース: euonymus
-# 作成時刻: 2014-11-03 13:29:53 +0000
+# 作成時刻: 2014-11-03 15:20:57 +0000
 # ************************************************************
 
 
@@ -43,6 +43,7 @@ CREATE TABLE `menus` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `restaurant_id` int(11) unsigned NOT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `remarks` varchar(255) DEFAULT NULL,
   `combo` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `lunch` tinyint(1) unsigned NOT NULL DEFAULT '1',

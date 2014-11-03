@@ -91,14 +91,13 @@ class MenusController extends AppController {
 	  $this->Menu->bindRestaurant(false);
 	  $this->set('restaurantList', $this->Menu->Restaurant->getList());
 
-
 	  if (!$this->Menu->exists($id)) {
 	    throw new NotFoundException(__('Invalid menu'));
 	  }
 	  if ($this->request->is(array('post', 'put'))) {
 	    if ($this->Menu->save($this->request->data)) {
 	      $this->Session->setFlash(__('The menu has been saved.'));
-	      return $this->redirect(array('action' => 'index'));
+	      /* return $this->redirect(array('action' => 'index')); */
 	    } else {
 	      $this->Session->setFlash(__('The menu could not be saved. Please, try again.'));
 	    }

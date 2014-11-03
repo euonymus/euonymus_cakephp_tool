@@ -4,6 +4,7 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('image'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('restaurant_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
@@ -21,6 +22,7 @@
 	<?php foreach ($menus as $menu): ?>
 	<tr>
 		<td><?php echo h($menu['Menu']['id']); ?>&nbsp;</td>
+		<td><?php if (!is_null($menu['Menu']['image'])) echo $this->Html->image($menu['Menu']['image'], array('width'=>'80px')); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['name']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Restaurant']['name']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['description']); ?>&nbsp;</td>

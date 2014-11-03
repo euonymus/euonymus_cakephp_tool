@@ -7,6 +7,10 @@ App::uses('AppModel', 'Model');
 class Menu extends AppModel {
 
   public $actsAs = array('Taggable');
+
+
+  public $image_upload = TRUE;
+
 /**
  * Display field
  *
@@ -15,6 +19,8 @@ class Menu extends AppModel {
 	public $displayField = 'name';
 
   public function beforeSave($options = array()) {
+    if (!parent::beforeSave($options)) return FALSE;
+
     if (array_key_exists('tag_id', $this->data[__CLASS__])) {
       $this->data[__CLASS__]['tags'] = $this->tagIdToTags($this->data[__CLASS__]['tag_id']);
     }
