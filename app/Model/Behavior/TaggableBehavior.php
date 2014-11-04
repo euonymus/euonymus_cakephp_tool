@@ -7,18 +7,18 @@ class TaggableBehavior extends ModelBehavior {
   static $ngPatternList;
   var $allow_space = false;
 
-  public function setup(&$Model, $settings = array()) {
+  public function setup(Model $model, $config = array()) {
   }
 
   public function getAllowSpace() {
     return $this->allow_space;
   }
   
-  public function allowSpaceInTag(&$Model, $allow_space = true) {
+  public function allowSpaceInTag(Model $model, $allow_space = true) {
     $this->allow_space = $allow_space;
   }
 
-  public function strip(&$Model, $str) {
+  public function strip(Model $model, $str) {
     $str = mb_convert_kana($str, 's');
     $str = str_replace('、', ',', $str);
     $str = str_replace('，', ',', $str);
@@ -45,16 +45,16 @@ class TaggableBehavior extends ModelBehavior {
     return $str;
   }
 
-  public function getTagList(&$Model, $data, $isHashtag = false) {
+  public function getTagList(Model $model, $data, $isHashtag = false) {
     if (is_string($data)) {
-      $data = $this->strip($Model, $data);
+      $data = $this->strip($model, $data);
       $data = explode(self::DELIMITER, $data);
     }
 
     $ret = array();
     if (is_array($data)) {
       foreach ($data as $d) {
-        /* if (strlen($d) && $this->isOk($Model, $d)) { */
+        /* if (strlen($d) && $this->isOk($model, $d)) { */
         if (strlen($d)) {
           if ($isHashtag && $d[0] !== '#') {
             $d = '#' . $d;
@@ -70,9 +70,9 @@ class TaggableBehavior extends ModelBehavior {
     return $ret;
   }
 
-  public function getTagFormValue(&$Model, $data, $isHashtag = false) {
+  public function getTagFormValue(Model $model, $data, $isHashtag = false) {
     if (is_string($data)) {
-      $data = $this->getTagList($Model, $data, $isHashtag);
+      $data = $this->getTagList($model, $data, $isHashtag);
     }
 
     $ret = '';
@@ -83,29 +83,29 @@ class TaggableBehavior extends ModelBehavior {
     return $ret;
   }
 
-  public function getTagFieldValue(&$Model, $data, $isHashtag = false) {
+  public function getTagFieldValue(Model $model, $data, $isHashtag = false) {
     return self::DELIMITER
-      . $this->getTagFormValue($Model, $data, $isHashtag)
+      . $this->getTagFormValue($model, $data, $isHashtag)
       . self::DELIMITER;
   }
 
-  public function getTagSearchToken(&$Model, $tag) {
+  public function getTagSearchToken(Model $model, $tag) {
     return '%'
-      . str_replace('%', '\%', $this->getTagFieldValue($Model, $tag))
+      . str_replace('%', '\%', $this->getTagFieldValue($model, $tag))
       . '%';
   }
 
-  public function getWildSearchToken(&$Model, $tag) {
+  public function getWildSearchToken(Model $model, $tag) {
     return '%'
-      . str_replace('%', '\%', $this->getTagFormValue($Model, $tag))
+      . str_replace('%', '\%', $this->getTagFormValue($model, $tag))
       . '%';
   }
 
-  /* function isOk(&$Model, $tag) { */
-  /*   return !$this->isNg($Model, $tag); */
+  /* function isOk(Model $model, $tag) { */
+  /*   return !$this->isNg($model, $tag); */
   /* } */
 
-  /* function isNg(&$Model, $tag) { */
+  /* function isNg(Model $model, $tag) { */
   /*   if (!self::$WordPattern) { */
   /*     self::$WordPattern =& ClassRegistry::init('WordPattern'); */
   /*   } */
