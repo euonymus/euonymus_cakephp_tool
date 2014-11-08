@@ -1,4 +1,5 @@
-    <table class="table table-condensed">
+    <table class="table table-striped table-hover">
+<? /*
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -16,10 +17,20 @@
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
+*/ ?>
 	<tbody>
 	<?php foreach ($menus as $menu): ?>
 	<tr>
-		<td><?php echo h($menu['Menu']['id']); ?>&nbsp;</td>
+		<td>
+<?php
+$anchor = $this->element('menu/menu_cell', compact('menu'));
+$link = array('controller' => 'menus', 'action' => 'view', $menu['Menu']['id']);
+$options = array('escape' => false,
+		 'style' => 'display:block;width:100%;height:100%');
+echo $this->Html->link($anchor, $link, $options);
+?>
+</td>
+<? /*
 		<td><?php if (!is_null($menu['Menu']['image'])) echo $this->Html->image($menu['Menu']['image'], array('width'=>'80px')); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['name']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Restaurant']['name']); ?>&nbsp;</td>
@@ -36,6 +47,7 @@
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $menu['Menu']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $menu['Menu']['id']), array(), __('Are you sure you want to delete # %s?', $menu['Menu']['id'])); ?>
 		</td>
+*/ ?>
 	</tr>
 <?php endforeach; ?>
 	</tbody>
