@@ -36,6 +36,22 @@ class MenusController extends AppController {
 	}
 
 /**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->Menu->exists($id)) {
+			throw new NotFoundException(__('Invalid menu'));
+		}
+		$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
+		$this->Menu->bindRestaurant(false);
+		$this->set('menu', $this->Menu->find('first', $options));
+	}
+
+/**
  * add method
  *
  * @return void
@@ -106,22 +122,4 @@ class MenusController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
-
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Menu->exists($id)) {
-			throw new NotFoundException(__('Invalid menu'));
-		}
-		$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
-		$this->set('menu', $this->Menu->find('first', $options));
-	}
-
 }

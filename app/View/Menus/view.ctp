@@ -1,68 +1,42 @@
-<div class="menus view">
-<h2><?php echo __('Menu'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Restaurant Id'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['restaurant_id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Remarks'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['remarks']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Combo'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['combo']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Lunch'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['lunch']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Dinner'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['dinner']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Price'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['price']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Tags'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['tags']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($menu['Menu']['modified']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<div class="bs-docs-section">
+<div class="well bs-component">
+
+   <h2><?php echo h($menu['Menu']['name']); ?>&nbsp;@&nbsp;<?php
+echo $this->Html->link($menu['Restaurant']['name'], '/restaurants/view/'.$menu['Restaurant']['id']);
+?></h2>
+<h4>
+<span class="label label-info"><?= UHelper::currency($menu['Menu']['price'], '\\') ?></span>
+<? if ($menu['Menu']['combo']) echo '<span class="label label-success">セットメニュー</span>&nbsp;';?>
+<? if ($menu['Menu']['lunch']) echo '<span class="label label-warning">ランチ</span>&nbsp;';?>
+<? if ($menu['Menu']['dinner']) echo '<span class="label label-default">ディナー</span>';?>
+</h4>
+
+
+
+        <div class="row-picture">
+      <? if (!is_null($menu['Menu']['image'])) echo $this->Html->image($menu['Menu']['image'], array('alt'=>'icon','class'=>'img-thumbnail', 'style'=>'width:180px;height:180px;')); ?>
+        </div>
+
+
+
+   <p><?php echo h($menu['Menu']['description']); ?></p>
+
+<? if (!U::isEmpty('remarks',$menu['Menu'])): ?>
+   <p>備考：<?php echo h($menu['Menu']['remarks']); ?></p>
+<? endif; ?>
+
+<h4>
+<?
+   $tags = explode(',',$menu['Menu']['tags']);
+foreach($tags as $tag):
+?>
+  <?= $this->Html->link($tag,'/menus/search/?tags='.$tag, array('class'=> 'btn btn-primary btn-xs')) ?>
+<? endforeach; ?>
+</h4>
+
 </div>
+</div>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
