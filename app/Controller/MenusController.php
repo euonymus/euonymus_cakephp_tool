@@ -75,10 +75,10 @@ class MenusController extends AppController {
 	  }
 	  if ($this->request->is(array('post', 'put'))) {
 	    if ($this->Menu->save($this->request->data)) {
-	      $this->Session->setFlash(__('The menu has been saved.'));
+	      $this->_setFlash(__('The menu has been saved.'));
 	      /* return $this->redirect(array('action' => 'index')); */
 	    } else {
-	      $this->Session->setFlash(__('The menu could not be saved. Please, try again.'));
+	      $this->_setFlash(__('The menu could not be saved. Please, try again.'), TRUE);
 	    }
 	  } else {
 	    $options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));

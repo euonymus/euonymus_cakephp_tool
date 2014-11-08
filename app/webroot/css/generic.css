@@ -19,7 +19,8 @@ height: 100%;
 width:100%;
 }
 #mainContent {
-float:left;
+float:right;
+margin-right:20px;
 }
 #footerContainer {
 	width:100%;

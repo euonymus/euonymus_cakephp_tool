@@ -36,14 +36,12 @@
     <?= $this->element('menu/header') ?>
     <?//= $this->element('breadcrumb') ?>
     <div id="bodyMiddle" class="row">
-        <div id="sidebar">
-           <?= $this->element('menu/sidebar') ?>
-        </div>
         <div id="mainContent" class="container">
               <?= $this->Session->flash() ?>
               <?= $this->fetch('content') ?>
 　　    </div> <!-- /container -->
 
+       <?= $this->element('menu/sidebar') ?>
     </div>
     <!-- /.row -->
 
