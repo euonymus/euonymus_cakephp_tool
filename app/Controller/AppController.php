@@ -59,4 +59,9 @@ class AppController extends Controller {
     $this->{$Component} = $this->Components->load($Component);
     $this->{$Component}->initialize($this);
   }
+
+  function _setFlash($string, $error = FALSE) {
+	$this->Session->setFlash('<button type="button" class="close" data-dismiss="alert">&times;</button>'.$string,
+				 'default', array('class' => 'alert alert-'. ($error ? 'danger' : 'success'))); 
+  }
 }

@@ -29,32 +29,10 @@ class MenusController extends AppController {
 	  $this->set('menus', $this->MenuTool->getList(array(),true));
 	}
 
-
-
 	public function search() {
 	  $this->_loadComponent('MenuTool');
 	  $this->set('menus', $this->MenuTool->search(true));
 	  $this->render('index');
-	}
-
-
-
-
-
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Menu->exists($id)) {
-			throw new NotFoundException(__('Invalid menu'));
-		}
-		$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
-		$this->set('menu', $this->Menu->find('first', $options));
 	}
 
 /**
@@ -73,10 +51,10 @@ class MenusController extends AppController {
 	  if ($this->request->is('post')) {
 	    $this->Menu->create();
 	    if ($this->Menu->save($this->request->data)) {
-	      $this->Session->setFlash(__('The menu has been saved.'));
+	      $this->_setFlash(__('The menu has been saved.'));
 	      return $this->redirect(array('action' => 'index'));
 	    } else {
-	      $this->Session->setFlash(__('The menu could not be saved. Please, try again.'));
+	      $this->_setFlash(__('The menu could not be saved. Please, try again.'), TRUE);
 	    }
 	  }
 	}
@@ -128,4 +106,22 @@ class MenusController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->Menu->exists($id)) {
+			throw new NotFoundException(__('Invalid menu'));
+		}
+		$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
+		$this->set('menu', $this->Menu->find('first', $options));
+	}
+
 }
