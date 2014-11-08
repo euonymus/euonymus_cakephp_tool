@@ -24,6 +24,7 @@ class MenuToolComponent extends Component {
       $this->Controller->loadModel('Menu');
       $tags = $this->ParamTool->query_init('tags');
       $options = array('conditions' => Menu::conditionByTags($tags));
+      $this->Controller->set(compact('tags'));
     }
     return $this->getList($options, $isPaging);
   }

@@ -32,7 +32,6 @@ class MenusController extends AppController {
 	public function search() {
 	  $this->_loadComponent('MenuTool');
 	  $this->set('menus', $this->MenuTool->search(true));
-	  $this->render('index');
 	}
 
 /**
