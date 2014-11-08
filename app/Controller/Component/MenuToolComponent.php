@@ -28,6 +28,12 @@ class MenuToolComponent extends Component {
     return $this->getList($options, $isPaging);
   }
 
+  public function listByRestaurant($restaurant_id, $isPaging = false) {
+    $this->Controller->loadModel('Menu');
+    $options = array('conditions' => Menu::conditionByRestaurantId($restaurant_id));
+    return $this->getList($options, $isPaging);
+  }
+
   /************************************************************************/
   /* Validation                                                           */
   /************************************************************************/

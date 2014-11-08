@@ -111,8 +111,12 @@ class Menu extends AppModel {
 	);
 
   /****************************************************************************/
-  /* Model bind settings                                                      */
+  /* conditions                                                               */
   /****************************************************************************/
+  public static function conditionByRestaurantId($restaurant_id) {
+    return array(__CLASS__.'.restaurant_id' => $restaurant_id);
+  }
+
   public static function conditionByTags($words, $expansion = false, $isAnd = true) {
     /* if (is_string($words)) $keyword_list = $this->getTagList($words); */
     if (is_string($words)) $keyword_list = explode(',', $words);

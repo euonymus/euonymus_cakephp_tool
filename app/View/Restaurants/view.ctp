@@ -1,33 +1,21 @@
-<div class="restaurants view">
-<h2><?php echo __('Restaurant'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($restaurant['Restaurant']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($restaurant['Restaurant']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($restaurant['Restaurant']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($restaurant['Restaurant']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($restaurant['Restaurant']['modified']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<div class="bs-docs-section">
+<div class="well bs-component">
+<h2><?php echo h($restaurant['Restaurant']['name']); ?></h2>
+<dl>
+	<dt>レストランの説明</dt>
+	<dd>
+		<?php echo h($restaurant['Restaurant']['description']); ?>
+		&nbsp;
+	</dd>
+</dl>
 </div>
+
+<div class="well bs-component">
+ <?= $this->element('menu/menu_list') ?>
+</div>
+
+</div>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

@@ -40,6 +40,10 @@ class RestaurantsController extends AppController {
 		}
 		$options = array('conditions' => array('Restaurant.' . $this->Restaurant->primaryKey => $id));
 		$this->set('restaurant', $this->Restaurant->find('first', $options));
+
+
+	  $this->_loadComponent('MenuTool');
+	  $this->set('menus', $this->MenuTool->listByRestaurant($id, true));
 	}
 
 /**
