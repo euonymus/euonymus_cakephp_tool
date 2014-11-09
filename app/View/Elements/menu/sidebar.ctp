@@ -6,7 +6,7 @@
 			 array('class' => 'btn btn-default', 'escape' => false)) ?>
    <?= $this->Html->link(
 			 '<i class="mdi-navigation-menu" style="font-size: 20pt;"></i>メニュー',
-			 '/menus',
+			 '/menus/list',
 			 array('class' => 'btn btn-default', 'escape' => false)) ?>
    <?= $this->Html->link(
 			 '<i class="mdi-maps-local-restaurant" style="font-size: 20pt;"></i>レストラン',

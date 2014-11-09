@@ -30,6 +30,8 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
         Router::connect('/img/*', array('controller' => 'img', 'action' => 'fetch'));
+        Router::connect('/:controller/list/*', array('action' => 'listview'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

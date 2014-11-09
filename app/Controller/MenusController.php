@@ -25,6 +25,9 @@ class MenusController extends AppController {
   const FULLTEXT_MIN_SCORE = 50;
 
 	public function index() {
+	}
+
+	public function listview() {
 	  $this->_loadComponent('MenuTool');
 	  $this->set('menus', $this->MenuTool->getList(array(),true));
 	}
