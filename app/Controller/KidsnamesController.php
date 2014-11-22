@@ -22,8 +22,8 @@ class KidsnamesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Kidsname->recursive = 0;
-		$this->set('kidsnames', $this->Paginator->paginate());
+	  $this->_loadComponent('KidsnameTool');
+	  $this->set('kidsnames', $this->KidsnameTool->getFiltered(true));
 	}
 
 /**

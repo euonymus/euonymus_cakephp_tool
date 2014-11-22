@@ -26,9 +26,9 @@
 			<?php echo h($kidsname['Kidsname']['gender_match']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Foreign Meanint'); ?></dt>
+		<dt><?php echo __('Foreign Meaning'); ?></dt>
 		<dd>
-			<?php echo h($kidsname['Kidsname']['foreign_meanint']); ?>
+			<?php echo h($kidsname['Kidsname']['foreign_meaning']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Remarks'); ?></dt>

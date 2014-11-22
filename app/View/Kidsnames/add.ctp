@@ -7,7 +7,7 @@
                 echo $this->Form->input('gender', array('options' => Kidsname::$genderList));
 		echo $this->Form->input('global');
 		echo $this->Form->input('gender_match');
-		echo $this->Form->input('foreign_meanint');
+		echo $this->Form->input('foreign_meaning');
 		echo $this->Form->input('remarks');
 	?>
 	</fieldset>

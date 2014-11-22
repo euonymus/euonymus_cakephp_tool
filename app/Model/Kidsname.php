@@ -69,7 +69,7 @@ class Kidsname extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'foreign_meanint' => array(
+		'foreign_meaning' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
 				//'message' => 'Your custom message here',
@@ -80,4 +80,51 @@ class Kidsname extends AppModel {
 			),
 		),
 	);
+  /******************************************************************/
+  /* Conditions                                                     */
+  /******************************************************************/
+  /**
+   *  $options: Array (
+                    [gender] => 2
+                    [global] => 1
+                    [gmatch] => 1
+                    [meaning] => 1
+                )
+  */
+  public static function conditionFilter($options) {
+    $conditions = array();
+    if ($options['gender']) {
+      $tmp = self::conditionFilterGender($options['gender']);
+      $conditions = am($tmp, $conditions);
+    }
+
+    if ($options['global']) {
+      $tmp = self::conditionFilterGlobal();
+      $conditions = am($tmp, $conditions);
+    }
+
+    if ($options['gmatch']) {
+      $tmp = self::conditionFilterGenderMatch();
+      $conditions = am($tmp, $conditions);
+    }
+
+    if ($options['meaning']) {
+      $tmp = self::conditionFilterForeignMeaning();
+      $conditions = am($tmp, $conditions);
+    }
+    return $conditions;
+  }
+
+  public static function conditionFilterGender($gender) {
+    return array(__CLASS__.'.gender' => $gender);
+  }
+  public static function conditionFilterGlobal() {
+    return array(__CLASS__.'.global' => TRUE);
+  }
+  public static function conditionFilterGenderMatch() {
+    return array(__CLASS__.'.gender_match' => TRUE);
+  }
+  public static function conditionFilterForeignMeaning() {
+    return array(__CLASS__.'.foreign_meaning' => FALSE);
+  }
 }
